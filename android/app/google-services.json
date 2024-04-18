@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "166195159460",
+    "project_id": "cotacao-ponto-certo",
+    "storage_bucket": "cotacao-ponto-certo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166195159460:android:91b7c7b70edaf26cdd2131",
+        "android_client_info": {
+          "package_name": "com.example.cotacao_ponto_certo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5YoEF7hUJxtgwJZaE_VeN9Gry6eiWku8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
