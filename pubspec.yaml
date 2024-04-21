@@ -41,7 +41,7 @@ dependencies:
   firebase_auth: 
   provider: 
   flutter_easyloading: 
-  
+  uuid: ^4.4.0
   
 
 dev_dependencies:

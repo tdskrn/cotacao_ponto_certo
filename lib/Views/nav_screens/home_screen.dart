@@ -1,4 +1,5 @@
 import 'package:cotacao_ponto_certo/Views/nav_screens/Widget/add_category_widget.dart';
+import 'package:cotacao_ponto_certo/Views/nav_screens/Widget/add_product_widget.dart';
 import 'package:cotacao_ponto_certo/Views/nav_screens/Widget/show_category_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,11 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text('Adicionar Produto'),
-              IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+              IconButton(
+                  onPressed: () {
+                    _showAddProductPopup(context);
+                  },
+                  icon: Icon(Icons.add)),
             ],
           ),
         ),
@@ -98,5 +103,25 @@ class HomeScreen extends StatelessWidget {
         builder: (context) {
           return ShowCategoryAlertDialog();
         });
+  }
+
+  Future<void> _showAddProductPopup(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Adicionar Produto'),
+          content: AddProductWidget(),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Fechar'))
+          ],
+        );
+      },
+    );
   }
 }
