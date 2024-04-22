@@ -42,6 +42,9 @@ dependencies:
   provider: 
   flutter_easyloading: 
   uuid: ^4.4.0
+  syncfusion_flutter_pdf: ^25.1.40
+  intl:
+  printing: ^5.12.0
   
 
 dev_dependencies:

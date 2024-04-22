@@ -13,6 +13,11 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void removeProductToCart(productId) {
+    _cartItems.remove(productId);
+    notifyListeners();
+  }
+
   void addProductToCart(
     String productName,
     String productId,

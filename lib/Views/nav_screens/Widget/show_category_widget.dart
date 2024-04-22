@@ -90,7 +90,36 @@ class ShowCategoryAlertDialog extends StatelessWidget {
                               );
                             },
                             icon: Icon(Icons.edit)),
-                        IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                        IconButton(
+                            onPressed: () async {
+                              return showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    content: Text('Tem certeza?'),
+                                    actions: [
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('Voltar'),
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          FirebaseFirestore.instance
+                                              .collection('categories')
+                                              .doc(categoryData.id)
+                                              .delete();
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('Deletar'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            icon: Icon(Icons.delete)),
                       ],
                     ),
                   ),
