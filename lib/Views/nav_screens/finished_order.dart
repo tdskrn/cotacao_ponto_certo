@@ -42,85 +42,91 @@ class _FinishedOrderState extends State<FinishedOrder> {
                   return Card(
                     child: SizedBox(
                       height: 130,
-                      child: Row(
+                      child: Column(
                         children: [
-                          Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Text(cartData.productName),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Text(cartData.unity),
-                          ),
-                          Container(
-                            child: Row(children: [
-                              IconButton(
-                                onPressed: cartData.quantity == 1.00
-                                    ? null
-                                    : () {
-                                        _cartProvider.decrement(cartData);
-                                      },
-                                icon: Icon(CupertinoIcons.minus),
+                          Row(children: [
+                            Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Text(
+                                cartData.productName,
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              Text(cartData.quantity.toString()),
-                              IconButton(
-                                onPressed: () {
-                                  _cartProvider.increment(cartData);
-                                },
-                                icon: Icon(CupertinoIcons.plus),
-                              )
-                            ]),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              _cartProvider
-                                  .removeProductToCart(cartData.productId);
-                            },
-                            icon: Icon(CupertinoIcons.cart_badge_minus),
-                          ),
-                          IconButton(
-                              onPressed: () async {
-                                await showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    final TextEditingController
-                                        _quantityController =
-                                        TextEditingController();
-                                    _quantityController.text =
-                                        cartData.quantity.toString();
-
-                                    return AlertDialog(
-                                      title: Text('Edite o valor manualmente'),
-                                      content: TextFormField(
-                                        keyboardType:
-                                            TextInputType.numberWithOptions(
-                                                decimal: true),
-                                        controller: _quantityController,
-                                      ),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: Text('Retornar'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              cartData.quantity = double.parse(
-                                                  _quantityController.text);
-                                            });
-
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: Text('Salvar'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
+                            ),
+                          ]),
+                          Row(children: [
+                            Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Text(cartData.unity),
+                            ),
+                            IconButton(
+                              onPressed: cartData.quantity == 1.00
+                                  ? null
+                                  : () {
+                                      _cartProvider.decrement(cartData);
+                                    },
+                              icon: Icon(CupertinoIcons.minus),
+                            ),
+                            Text(cartData.quantity.toString()),
+                            IconButton(
+                              onPressed: () {
+                                _cartProvider.increment(cartData);
                               },
-                              icon: Icon(Icons.edit))
+                              icon: Icon(CupertinoIcons.plus),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                _cartProvider
+                                    .removeProductToCart(cartData.productId);
+                              },
+                              icon: Icon(CupertinoIcons.cart_badge_minus),
+                            ),
+                            IconButton(
+                                onPressed: () async {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      final TextEditingController
+                                          _quantityController =
+                                          TextEditingController();
+                                      _quantityController.text =
+                                          cartData.quantity.toString();
+
+                                      return AlertDialog(
+                                        title:
+                                            Text('Edite o valor manualmente'),
+                                        content: TextFormField(
+                                          keyboardType:
+                                              TextInputType.numberWithOptions(
+                                                  decimal: true),
+                                          controller: _quantityController,
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text('Retornar'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                cartData.quantity =
+                                                    double.parse(
+                                                        _quantityController
+                                                            .text);
+                                              });
+
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text('Salvar'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                                icon: Icon(Icons.edit))
+                          ]),
                         ],
                       ),
                     ),

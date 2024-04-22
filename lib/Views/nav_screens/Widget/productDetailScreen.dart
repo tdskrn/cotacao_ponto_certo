@@ -14,7 +14,7 @@ class ProductDetailScreen extends StatefulWidget {
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    double initialQuantity = widget.productData['quantity'];
+    dynamic initialQuantity = widget.productData['quantity'];
     final CartProvider _cartProvider = Provider.of<CartProvider>(context);
     return Container(
       height: 300,

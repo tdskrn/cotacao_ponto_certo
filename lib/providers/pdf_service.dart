@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:html';
+import "package:universal_html/html.dart"; // necessario pra poder buildar pra android e web ao mesmo temp
 import 'dart:typed_data';
 
 import 'package:cotacao_ponto_certo/models/cart_attributes.dart';
