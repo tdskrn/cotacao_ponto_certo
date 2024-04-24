@@ -1,10 +1,12 @@
 import 'package:cotacao_ponto_certo/Views/nav_screens/Widget/add_category_widget.dart';
 import 'package:cotacao_ponto_certo/Views/nav_screens/Widget/add_product_widget.dart';
 import 'package:cotacao_ponto_certo/Views/nav_screens/Widget/show_category_widget.dart';
+import 'package:cotacao_ponto_certo/Views/nav_screens/Widget/show_product_widget.dart';
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,23 @@ class HomeScreen extends StatelessWidget {
               IconButton(
                   onPressed: () {
                     _showAddProductPopup(context);
+                  },
+                  icon: Icon(Icons.add)),
+            ],
+          ),
+        ),
+      ),
+      Container(
+        width: double.infinity,
+        height: 50,
+        child: Card(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text('Listar Produtos'),
+              IconButton(
+                  onPressed: () {
+                    _showListProductsPopup(context);
                   },
                   icon: Icon(Icons.add)),
             ],
@@ -68,7 +87,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text('Listar Pedidos'),
-              IconButton(onPressed: () {}, icon: Icon(Icons.list)),
+              IconButton(onPressed: () async {}, icon: Icon(Icons.list)),
             ],
           ),
         ),
@@ -103,6 +122,15 @@ class HomeScreen extends StatelessWidget {
         builder: (context) {
           return ShowCategoryAlertDialog();
         });
+  }
+
+  Future<void> _showListProductsPopup(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      builder: (context) {
+        return ShowProductAlertDialog();
+      },
+    );
   }
 
   Future<void> _showAddProductPopup(BuildContext context) async {

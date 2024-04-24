@@ -124,6 +124,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
           'productName': productName,
           'productUnity': productUnity,
           'productCategory': productCategory,
+          'quantity': 0,
         }).whenComplete(() {
           _formKey.currentState!.reset();
           EasyLoading.dismiss();
