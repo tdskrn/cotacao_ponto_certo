@@ -26,7 +26,9 @@ class InvoiceService {
 
     final invoiceId = Uuid().v4();
     await firestore.collection('invoices').doc(invoiceId).set({
+      'invoice_id': invoiceId,
       'created_at': DateTime.now(),
+      'last_modified': DateTime.now(),
       'products': cartProducts,
     });
   }

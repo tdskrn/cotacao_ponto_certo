@@ -44,14 +44,17 @@ class _AddProductWidgetState extends State<AddProductWidget> {
         children: [
           Container(
             padding: EdgeInsets.all(10),
-            child: Text('Categorias'),
+            child: Text('Adicionar Produtos'),
           ),
           Divider(
             color: Colors.grey,
           ),
+          SizedBox(
+            height: 30,
+          ),
           Flexible(
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.3,
+              width: MediaQuery.of(context).size.width * 0.6,
               child: TextFormField(
                 onChanged: (value) {
                   productName = value;
@@ -66,14 +69,17 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                   return null;
                 },
                 decoration: InputDecoration(
-                    labelText: "Insira o nome do Produto",
-                    hintText: "Insira o nome do Produto"),
+                  hintText: "Insira o nome do Produto",
+                ),
               ),
             ),
           ),
+          SizedBox(
+            height: 30,
+          ),
           Flexible(
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.3,
+              width: MediaQuery.of(context).size.width * 0.6,
               child: TextFormField(
                 onChanged: (value) {
                   productUnity = value;
@@ -86,10 +92,13 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                   return null;
                 },
                 decoration: InputDecoration(
-                    labelText: "Insira o nome da unidade medida",
-                    hintText: "Insira o nome da unidade medida"),
+                  hintText: "Insira a unidade de medida",
+                ),
               ),
             ),
+          ),
+          SizedBox(
+            height: 30,
           ),
           DropdownButtonFormField(
             items: _categories.map<DropdownMenuItem<String>>((e) {
@@ -125,13 +134,15 @@ class _AddProductWidgetState extends State<AddProductWidget> {
           'productUnity': productUnity,
           'productCategory': productCategory,
           'quantity': 0,
+          'created_at': DateTime.now(),
+          'last_modified': DateTime.now(),
         }).whenComplete(() {
           _formKey.currentState!.reset();
           EasyLoading.dismiss();
           Navigator.of(context).pop();
         });
       } catch (error) {
-        EasyLoading.showError(error.toString());
+        EasyLoading.showError("Algum erro ocorreu, tente novamente");
       }
     }
   }

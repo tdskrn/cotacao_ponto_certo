@@ -118,6 +118,7 @@ class _ShowProductAlertDialogState extends State<ShowProductAlertDialog> {
                                     productUnity = productData['productUnity'];
                                     productCategory =
                                         productData['productCategory'];
+
                                     return AlertDialog(
                                         content: Form(
                                       key: _formKey,
@@ -221,6 +222,8 @@ class _ShowProductAlertDialogState extends State<ShowProductAlertDialog> {
                                                             productUnity,
                                                         'productCategory':
                                                             productCategory,
+                                                        'last_modified':
+                                                            DateTime.now(),
                                                       }).whenComplete(() {
                                                         _formKey.currentState!
                                                             .reset();

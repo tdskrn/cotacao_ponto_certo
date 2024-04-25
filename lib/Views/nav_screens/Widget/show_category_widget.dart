@@ -72,7 +72,8 @@ class ShowCategoryAlertDialog extends StatelessWidget {
                                                   .doc(categoryData.id)
                                                   .update({
                                                 "categoryName":
-                                                    _categoryController.text
+                                                    _categoryController.text,
+                                                "last_modified": DateTime.now(),
                                               }).whenComplete(() {
                                                 EasyLoading.showSuccess(
                                                     'Alterado com sucesso');

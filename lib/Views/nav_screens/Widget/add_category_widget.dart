@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:uuid/uuid.dart';
 
 class AddCategoryWidget extends StatefulWidget {
   const AddCategoryWidget({super.key});
@@ -51,19 +52,23 @@ class _AddCategoryWidgetState extends State<AddCategoryWidget> {
           ElevatedButton(
               child: Text('Salvar'),
               onPressed: () async {
-                uploadCategory();
+                saveCategory();
               })
         ],
       ),
     );
   }
 
-  void uploadCategory() async {
+  void saveCategory() async {
     if (_formKey.currentState!.validate()) {
       EasyLoading.show();
       try {
-        await _firestore.collection('categories').add({
+        final categoryId = Uuid().v4();
+        await _firestore.collection('categories').doc(categoryId).set({
+          'categoryId': categoryId,
           'categoryName': categoryName,
+          'created_at': DateTime.now(),
+          'last_modified': DateTime.now(),
         }).whenComplete(() {
           EasyLoading.showSuccess('Categoria adicionada com sucesso');
           _formKey.currentState!.reset();

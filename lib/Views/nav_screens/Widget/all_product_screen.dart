@@ -72,6 +72,12 @@ class _AllProductScreenState extends State<AllProductScreen> {
   }
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
@@ -83,12 +89,6 @@ class _AllProductScreenState extends State<AllProductScreen> {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent - 200) {
       _loadMoreProducts();
-    }
-
-    @override
-    void dispose() {
-      _scrollController.dispose();
-      super.dispose();
     }
   }
 

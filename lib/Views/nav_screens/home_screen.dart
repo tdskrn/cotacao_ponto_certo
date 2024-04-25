@@ -136,18 +136,11 @@ class HomeScreen extends StatelessWidget {
   Future<void> _showAddProductPopup(BuildContext context) async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
           title: Text('Adicionar Produto'),
           content: AddProductWidget(),
-          actions: [
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('Fechar'))
-          ],
+          actions: [],
         );
       },
     );
