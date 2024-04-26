@@ -1,4 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cotacao_ponto_certo/app/modules/products/data/repositories/add_product_repository_impl.dart';
+import 'package:cotacao_ponto_certo/app/modules/products/domain/models/product_dto.dart';
+import 'package:cotacao_ponto_certo/app/modules/products/domain/usecases/add_product_usecase_impl.dart';
+import 'package:cotacao_ponto_certo/app/modules/products/external/datasources/add_product_datasource_impl_firebase.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/teste_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:uuid/uuid.dart';
@@ -124,19 +129,32 @@ class _AddProductWidgetState extends State<AddProductWidget> {
   }
 
   void saveProduct() async {
+    TesteController _testeController = TesteController(AddProductUseCaseImpl(
+        AddProductReposytoryImpl(AddProductDataSourceImplFirebase())));
     EasyLoading.show(status: 'Aguarde um momento...');
     if (_formKey.currentState!.validate()) {
       try {
         final productId = Uuid().v4();
-        await _firestore.collection('products').doc(productId).set({
-          'productId': productId,
-          'productName': productName,
-          'productUnity': productUnity,
-          'productCategory': productCategory,
-          'quantity': 0,
-          'created_at': DateTime.now(),
-          'last_modified': DateTime.now(),
-        }).whenComplete(() {
+
+        await _testeController
+            .addProduct(ProductDto(
+          productId: productId,
+          productName: productName,
+          productUnity: productUnity,
+          productCategory: productCategory,
+          quantity: 0,
+          last_modified: Timestamp.now(),
+          created_at: Timestamp.now(),
+        ))
+            // await _firestore.collection('products').doc(productId).set({
+            //   'productId': productId,
+            //   'productName': productName,
+            //   'productUnity': productUnity,
+            //   'productCategory': productCategory,
+            //   'quantity': 0,
+            //   'created_at': DateTime.now(),
+            //   'last_modified': DateTime.now(),
+            .whenComplete(() {
           _formKey.currentState!.reset();
           EasyLoading.dismiss();
           Navigator.of(context).pop();

@@ -1,4 +1,8 @@
 import 'package:cotacao_ponto_certo/app/models/providers/local_base.dart';
+import 'package:cotacao_ponto_certo/app/modules/products/data/repositories/add_product_repository_impl.dart';
+import 'package:cotacao_ponto_certo/app/modules/products/domain/usecases/add_product_usecase_impl.dart';
+import 'package:cotacao_ponto_certo/app/modules/products/external/datasources/add_product_datasource_impl_firebase.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/teste_controller.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -29,6 +33,8 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    TesteController _testeController = TesteController(AddProductUseCaseImpl(
+        AddProductReposytoryImpl(AddProductDataSourceImplFirebase())));
     return Scaffold(
       appBar: AppBar(
         title: Text('Search Page'),
@@ -42,7 +48,17 @@ class _SearchScreenState extends State<SearchScreen> {
               itemCount: _localProducts.length,
               itemBuilder: (context, index) {
                 final productData = _localProducts[index];
-                return Text(productData['productName']);
+                return Row(
+                  children: [
+                    Text(productData['productName']),
+                    ElevatedButton(
+                        onPressed: () async {
+                          _testeController
+                              .addProduct(productData['productDto']);
+                        },
+                        child: Text('Edit')),
+                  ],
+                );
               },
             ),
     );
