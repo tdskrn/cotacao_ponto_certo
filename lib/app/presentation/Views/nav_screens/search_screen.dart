@@ -1,4 +1,4 @@
-import 'package:cotacao_ponto_certo/providers/local_base.dart';
+import 'package:cotacao_ponto_certo/app/models/providers/local_base.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {

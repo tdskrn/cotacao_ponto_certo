@@ -1,7 +1,7 @@
-import 'package:cotacao_ponto_certo/Views/nav_screens/category_screen.dart';
-import 'package:cotacao_ponto_certo/Views/nav_screens/finished_order.dart';
-import 'package:cotacao_ponto_certo/Views/nav_screens/home_screen.dart';
-import 'package:cotacao_ponto_certo/Views/nav_screens/search_screen.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/category_screen.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/finished_order.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/home_screen.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/search_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {

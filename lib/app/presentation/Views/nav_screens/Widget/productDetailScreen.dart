@@ -1,4 +1,4 @@
-import 'package:cotacao_ponto_certo/providers/cart_provider.dart';
+import 'package:cotacao_ponto_certo/app/models/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

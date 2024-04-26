@@ -1,4 +1,4 @@
-import 'package:cotacao_ponto_certo/models/cart_attributes.dart';
+import 'package:cotacao_ponto_certo/app/models/cart_attributes.dart';
 import 'package:flutter/material.dart';
 
 class ProductWidgetCart extends StatefulWidget {

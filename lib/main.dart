@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import 'package:cotacao_ponto_certo/Views/mainScreenView.dart';
-import 'package:cotacao_ponto_certo/models/timeStampAdapter.dart';
-import 'package:cotacao_ponto_certo/providers/cart_provider.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/mainScreenView.dart';
+import 'package:cotacao_ponto_certo/app/models/timeStampAdapter.dart';
+import 'package:cotacao_ponto_certo/app/models/providers/cart_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

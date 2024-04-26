@@ -1,7 +1,7 @@
-import 'package:cotacao_ponto_certo/Views/nav_screens/Widget/add_category_widget.dart';
-import 'package:cotacao_ponto_certo/Views/nav_screens/Widget/add_product_widget.dart';
-import 'package:cotacao_ponto_certo/Views/nav_screens/Widget/show_category_widget.dart';
-import 'package:cotacao_ponto_certo/Views/nav_screens/Widget/show_product_widget.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/add_category_widget.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/add_product_widget.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/show_category_widget.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/show_product_widget.dart';
 
 import 'package:flutter/material.dart';
 

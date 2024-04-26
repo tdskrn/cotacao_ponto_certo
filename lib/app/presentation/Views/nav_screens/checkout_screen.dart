@@ -1,7 +1,7 @@
-import 'package:cotacao_ponto_certo/Views/nav_screens/Widget/finished_lista_widget.dart';
-import 'package:cotacao_ponto_certo/providers/cart_provider.dart';
-import 'package:cotacao_ponto_certo/providers/invoice_service.dart';
-import 'package:cotacao_ponto_certo/providers/pdf_service.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/finished_lista_widget.dart';
+import 'package:cotacao_ponto_certo/app/models/providers/cart_provider.dart';
+import 'package:cotacao_ponto_certo/app/models/providers/invoice_service.dart';
+import 'package:cotacao_ponto_certo/app/models/providers/pdf_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';

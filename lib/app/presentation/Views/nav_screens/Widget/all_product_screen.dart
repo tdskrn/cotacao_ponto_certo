@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cotacao_ponto_certo/Views/nav_screens/Widget/productDetailScreen.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/productDetailScreen.dart';
 import 'package:flutter/material.dart';
 
 class AllProductScreen extends StatefulWidget {

@@ -2,7 +2,7 @@ import 'dart:convert';
 import "package:universal_html/html.dart"; // necessario pra poder buildar pra android e web ao mesmo temp
 import 'dart:typed_data';
 
-import 'package:cotacao_ponto_certo/models/cart_attributes.dart';
+import 'package:cotacao_ponto_certo/app/models/cart_attributes.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:printing/printing.dart';

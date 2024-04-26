@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cotacao_ponto_certo/models/cart_attributes.dart';
+import 'package:cotacao_ponto_certo/app/models/cart_attributes.dart';
 import 'package:uuid/uuid.dart';
 
 class InvoiceService {
