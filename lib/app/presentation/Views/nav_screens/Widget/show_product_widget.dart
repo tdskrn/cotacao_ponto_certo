@@ -221,11 +221,14 @@ class _ListProductWidgetState extends State<ListProductWidget> {
                                                           .doc(productId)
                                                           .update({
                                                         'productName':
-                                                            productName,
+                                                            productName
+                                                                .toUpperCase(),
                                                         'productUnity':
-                                                            productUnity,
+                                                            productUnity
+                                                                .toUpperCase(),
                                                         'productCategory':
-                                                            productCategory,
+                                                            productCategory
+                                                                .toUpperCase(),
                                                         'last_modified':
                                                             DateTime.now(),
                                                       }).whenComplete(() {
