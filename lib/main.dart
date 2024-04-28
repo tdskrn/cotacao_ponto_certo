@@ -1,6 +1,7 @@
 import 'dart:ui';
 
-import 'package:cotacao_ponto_certo/app/presentation/Views/mainScreenView.dart';
+import 'package:cotacao_ponto_certo/app/config/router/app_router.dart';
+
 import 'package:cotacao_ponto_certo/app/models/timeStampAdapter.dart';
 import 'package:cotacao_ponto_certo/app/models/providers/cart_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => CartProvider()),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         scrollBehavior: MaterialScrollBehavior().copyWith(dragDevices: {
           PointerDeviceKind.mouse,
           PointerDeviceKind.touch,
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: MainScreen(),
+        routerConfig: appRouter,
         builder: EasyLoading.init(),
       ),
     );

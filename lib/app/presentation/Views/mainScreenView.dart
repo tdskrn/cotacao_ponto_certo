@@ -1,10 +1,11 @@
 import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/category_screen.dart';
 import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/finished_order.dart';
 import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/home_screen.dart';
-import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/search_screen.dart';
+
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
+  static const String name = 'main-screen';
   const MainScreen({super.key});
 
   @override
@@ -17,14 +18,13 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> _pages = [
     HomeScreen(),
     CategoryScreen(),
-    SearchScreen(),
     FinishedOrder(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Assistente da Sandra'),
+        title: Text('SUPERMERCADO PONTO CERTO'),
         centerTitle: true,
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -46,15 +46,11 @@ class _MainScreenState extends State<MainScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.category),
-            label: 'Category',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+            label: 'Categorias',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.check),
-            label: 'Finished',
+            label: 'Lista de pedidos',
           ),
         ],
       ),

@@ -1,11 +1,6 @@
-import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/add_category_widget.dart';
-import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/add_product_widget.dart';
 import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/show_category_widget.dart';
-import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/show_orders_widget.dart';
-// import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/show_product_dialog2.dart';
-import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/show_product_widget.dart';
-
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -17,7 +12,8 @@ class HomeScreen extends StatelessWidget {
       child: Column(children: [
         InkWell(
           onTap: () {
-            _showAddProductPopup(context);
+            // _showAddProductPopup(context);
+            context.push('/add-product');
           },
           child: Container(
             width: double.infinity,
@@ -43,7 +39,7 @@ class HomeScreen extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            _showListProductsPopup(context);
+            context.push('/list-products');
           },
           child: Container(
             width: double.infinity,
@@ -54,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    'Listar Produtos',
+                    'Editar Produtos',
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -72,7 +68,7 @@ class HomeScreen extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            _showAddCategoryPopup(context);
+            context.push('/add-category');
           },
           child: Container(
             width: double.infinity,
@@ -112,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    'Listar Categorias',
+                    'Editar Categorias',
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -130,7 +126,7 @@ class HomeScreen extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            _showOrdersPopup(context);
+            context.push('/show-orders');
           },
           child: Container(
             width: double.infinity,
@@ -161,62 +157,12 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _showAddCategoryPopup(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Adicionar Categoria'),
-          content: AddCategoryWidget(),
-          actions: [
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('Fechar'))
-          ],
-        );
-      },
-    );
-  }
-
   Future<void> _showListCategoriesPopup(BuildContext context) async {
     return showDialog<void>(
         context: context,
         barrierDismissible: false,
         builder: (context) {
           return ShowCategoryAlertDialog();
-        });
-  }
-
-  Future<void> _showListProductsPopup(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      builder: (context) {
-        return ShowProductAlertDialog();
-      },
-    );
-  }
-
-  Future<void> _showAddProductPopup(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Adicionar Produto'),
-          content: AddProductWidget(),
-          actions: [],
-        );
-      },
-    );
-  }
-
-  Future<void> _showOrdersPopup(BuildContext context) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return ShowOrdersWidget();
         });
   }
 }

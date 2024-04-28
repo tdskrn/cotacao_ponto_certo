@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class ShowProductAlertDialog extends StatefulWidget {
-  const ShowProductAlertDialog({super.key});
+class ListProductWidget extends StatefulWidget {
+  static const String name = 'list-products';
+  const ListProductWidget({super.key});
 
   @override
-  State<ShowProductAlertDialog> createState() => _ShowProductAlertDialogState();
+  State<ListProductWidget> createState() => _ListProductWidgetState();
 }
 
-class _ShowProductAlertDialogState extends State<ShowProductAlertDialog> {
+class _ListProductWidgetState extends State<ListProductWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late String productName;
   late String productUnity;
@@ -56,31 +57,33 @@ class _ShowProductAlertDialogState extends State<ShowProductAlertDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Column(
-        children: [
-          Text("Todos os Produtos"),
-          TextFormField(
-            onFieldSubmitted: (value) {
-              setState(() {
-                _searchedValue = value;
-              });
-            },
-            decoration: InputDecoration(
-              labelText: 'Pesquise pelos produtos',
-              labelStyle: TextStyle(
-                color: Colors.black,
-                letterSpacing: 4,
-              ),
-              prefixIcon: Icon(
-                Icons.search,
-                color: Colors.black,
+    return Scaffold(
+      appBar: AppBar(
+        title: Column(
+          children: [
+            Text("Todos os Produtos"),
+            TextFormField(
+              onFieldSubmitted: (value) {
+                setState(() {
+                  _searchedValue = value;
+                });
+              },
+              decoration: InputDecoration(
+                labelText: 'Pesquise pelos produtos',
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                  letterSpacing: 4,
+                ),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-      content: Container(
+      body: Container(
         width: double.maxFinite,
         height: 300,
         child: StreamBuilder(

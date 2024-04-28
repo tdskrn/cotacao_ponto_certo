@@ -29,7 +29,7 @@ class _FinishedOrderState extends State<FinishedOrder> {
                   ),
           ],
           centerTitle: true,
-          title: Text('Pedido'),
+          title: Text('Lista para pedido'),
         ),
         body: _cartProvider.cartItems.isNotEmpty
             ? ListView.builder(
@@ -139,12 +139,18 @@ class _FinishedOrderState extends State<FinishedOrder> {
                 ),
               ),
         bottomSheet: _cartProvider.cartItems.isEmpty
-            ? Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  child: Text('FINALIZAR LISTA'),
+            ? Container(
+                color: Colors.grey,
+                height: 50,
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'NENHUM ITEM ADICIONADO',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
               )
             : InkWell(

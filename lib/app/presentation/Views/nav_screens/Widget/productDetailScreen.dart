@@ -12,6 +12,20 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  late FocusNode _quantityFocus;
+
+  @override
+  void initState() {
+    _quantityFocus = FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _quantityFocus.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     dynamic initialQuantity = widget.productData['quantity'];
@@ -57,12 +71,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       showDialog(
                           context: context,
                           builder: (context) {
+                            _quantityFocus.requestFocus();
                             final TextEditingController _quantityController =
                                 TextEditingController(
                                     text: initialQuantity.toString());
                             return AlertDialog(
                               title: Text('Edite o valor manulamente'),
                               content: TextFormField(
+                                focusNode: _quantityFocus,
                                 keyboardType: TextInputType.numberWithOptions(
                                     decimal: true),
                                 controller: _quantityController,
@@ -103,8 +119,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     padding: EdgeInsets.all(8.0),
                     child: _cartProvider.cartItems
                             .containsKey(widget.productData['productId'])
-                        ? Text('IN CART')
-                        : Text('ADD TO CART'),
+                        ? Text('Já está na lista')
+                        : Text('Add a Lista'),
                   ),
                 ],
               ),
