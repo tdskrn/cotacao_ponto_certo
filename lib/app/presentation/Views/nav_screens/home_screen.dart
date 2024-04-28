@@ -1,6 +1,8 @@
 import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/add_category_widget.dart';
 import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/add_product_widget.dart';
 import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/show_category_widget.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/show_orders_widget.dart';
+// import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/show_product_dialog2.dart';
 import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/show_product_widget.dart';
 
 import 'package:flutter/material.dart';
@@ -10,89 +12,153 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Container(
-        width: double.infinity,
-        height: 50,
-        child: Card(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text('Adicionar Produto'),
-              IconButton(
-                  onPressed: () {
-                    _showAddProductPopup(context);
-                  },
-                  icon: Icon(Icons.add)),
-            ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(children: [
+        InkWell(
+          onTap: () {
+            _showAddProductPopup(context);
+          },
+          child: Container(
+            width: double.infinity,
+            height: 50,
+            child: Card(
+              color: Colors.blue,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    'Adicionar Produto',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Icon(Icons.add, color: Colors.white),
+                ],
+              ),
+            ),
           ),
         ),
-      ),
-      Container(
-        width: double.infinity,
-        height: 50,
-        child: Card(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text('Listar Produtos'),
-              IconButton(
-                  onPressed: () {
-                    _showListProductsPopup(context);
-                  },
-                  icon: Icon(Icons.add)),
-            ],
+        InkWell(
+          onTap: () {
+            _showListProductsPopup(context);
+          },
+          child: Container(
+            width: double.infinity,
+            height: 50,
+            child: Card(
+              color: Colors.blue,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    'Listar Produtos',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-      ),
-      Container(
-        width: double.infinity,
-        height: 50,
-        child: Card(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text('Adicionar Categoria'),
-              IconButton(
-                  onPressed: () {
-                    _showAddCategoryPopup(context);
-                  },
-                  icon: Icon(Icons.add)),
-            ],
+        InkWell(
+          onTap: () {
+            _showAddCategoryPopup(context);
+          },
+          child: Container(
+            width: double.infinity,
+            height: 50,
+            child: Card(
+              color: Colors.blue,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    'Adicionar Categoria',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-      ),
-      Container(
-        width: double.infinity,
-        height: 50,
-        child: Card(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text('Listar Categorias'),
-              IconButton(
-                  onPressed: () {
-                    _showListCategoriesPopup(context);
-                  },
-                  icon: Icon(Icons.list)),
-            ],
+        InkWell(
+          onTap: () {
+            _showListCategoriesPopup(context);
+          },
+          child: Container(
+            width: double.infinity,
+            height: 50,
+            child: Card(
+              color: Colors.blue,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    'Listar Categorias',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Icon(
+                    Icons.list,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-      ),
-      Container(
-        width: double.infinity,
-        height: 50,
-        child: Card(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text('Listar Pedidos'),
-              IconButton(onPressed: () async {}, icon: Icon(Icons.list)),
-            ],
+        InkWell(
+          onTap: () {
+            _showOrdersPopup(context);
+          },
+          child: Container(
+            width: double.infinity,
+            height: 50,
+            child: Card(
+              color: Colors.blue,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    'Listar Pedidos',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Icon(
+                    Icons.list,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-      ),
-    ]);
+      ]),
+    );
   }
 
   Future<void> _showAddCategoryPopup(BuildContext context) async {
@@ -144,5 +210,13 @@ class HomeScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<void> _showOrdersPopup(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return ShowOrdersWidget();
+        });
   }
 }

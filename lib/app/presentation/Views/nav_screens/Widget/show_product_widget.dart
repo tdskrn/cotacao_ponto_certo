@@ -69,12 +69,12 @@ class _ShowProductAlertDialogState extends State<ShowProductAlertDialog> {
             decoration: InputDecoration(
               labelText: 'Pesquise pelos produtos',
               labelStyle: TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 letterSpacing: 4,
               ),
               prefixIcon: Icon(
                 Icons.search,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
           ),
@@ -205,11 +205,12 @@ class _ShowProductAlertDialogState extends State<ShowProductAlertDialog> {
                                                 child: Text('Salvar'),
                                                 onPressed: () async {
                                                   productId = productData.id;
-                                                  EasyLoading.show(
-                                                      status:
-                                                          'Aguarde um momento...');
+
                                                   if (_formKey.currentState!
                                                       .validate()) {
+                                                    EasyLoading.show(
+                                                        status:
+                                                            'Aguarde um momento...');
                                                     try {
                                                       await _firestore
                                                           .collection(
@@ -246,6 +247,37 @@ class _ShowProductAlertDialogState extends State<ShowProductAlertDialog> {
                               },
                               icon: Icon(Icons.edit),
                             ),
+                            IconButton(
+                              onPressed: () async {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      content: Text('Tem certeza?'),
+                                      actions: [
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text('Voltar'),
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            FirebaseFirestore.instance
+                                                .collection('products')
+                                                .doc(productData.id)
+                                                .delete();
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text('Deletar'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: Icon(Icons.delete),
+                            )
                           ],
                         ),
                       ),

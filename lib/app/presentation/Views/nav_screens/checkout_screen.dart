@@ -48,8 +48,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             children: [
               Row(
                 children: [
-                  _rowHeader("QUANTIDADE", 1),
-                  _rowHeader("UNIDADE", 1),
+                  _rowHeader("QTD", 1),
+                  _rowHeader("UND", 1),
                   _rowHeader("DESCRICAO", 3),
                 ],
               ),

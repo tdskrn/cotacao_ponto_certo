@@ -20,16 +20,9 @@ class _AddCategoryWidgetState extends State<AddCategoryWidget> {
       key: _formKey,
       child: Column(
         children: [
-          Container(
-            padding: EdgeInsets.all(10),
-            child: Text('Categorias'),
-          ),
-          Divider(
-            color: Colors.grey,
-          ),
           Flexible(
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.3,
+              width: MediaQuery.of(context).size.width * 0.6,
               child: TextFormField(
                 onChanged: (value) {
                   categoryName = value;
@@ -49,6 +42,9 @@ class _AddCategoryWidgetState extends State<AddCategoryWidget> {
               ),
             ),
           ),
+          SizedBox(
+            height: 30,
+          ),
           ElevatedButton(
               child: Text('Salvar'),
               onPressed: () async {
@@ -64,9 +60,10 @@ class _AddCategoryWidgetState extends State<AddCategoryWidget> {
       EasyLoading.show();
       try {
         final categoryId = Uuid().v4();
+        final upperCaseCategoryName = categoryName.toUpperCase();
         await _firestore.collection('categories').doc(categoryId).set({
           'categoryId': categoryId,
-          'categoryName': categoryName,
+          'categoryName': upperCaseCategoryName,
           'created_at': DateTime.now(),
           'last_modified': DateTime.now(),
         }).whenComplete(() {
