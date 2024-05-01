@@ -43,21 +43,23 @@ class PdfService {
 
     PdfGrid grid = PdfGrid();
     grid.columns.add(count: 3);
-    final List<double> columnWidths = [220, 80, 40];
+    final List<double> columnWidths = [60, 60, 380];
     grid.headers.add(1);
     PdfGridRow header = grid.headers[0];
-    header.cells[0].value = 'Descrição';
-    header.cells[1].value = 'Quantidade';
-    header.cells[2].value = 'Unidade';
+    header.cells[0].value = 'Quantidade';
+    header.cells[1].value = 'Unidade';
+    header.cells[2].value = 'Descrição';
 
     grid.columns[0].width = columnWidths[0];
+    grid.columns[1].width = columnWidths[1];
+    grid.columns[2].width = columnWidths[2];
 
     header.style = PdfGridCellStyle();
     for (final cartItem in cartData) {
       PdfGridRow row = grid.rows.add();
-      row.cells[0].value = cartItem.productName;
-      row.cells[1].value = cartItem.quantity.toStringAsFixed(2);
-      row.cells[2].value = cartItem.unity;
+      row.cells[0].value = cartItem.quantity.toStringAsFixed(2);
+      row.cells[1].value = cartItem.unity;
+      row.cells[2].value = cartItem.productName;
       // dinamicDistance += 35;
     }
     grid.style = PdfGridStyle(
@@ -113,21 +115,26 @@ class PdfService {
 
     PdfGrid grid = PdfGrid();
     grid.columns.add(count: 3);
-    final List<double> columnWidths = [220, 80, 40];
+    final List<double> columnWidths = [60, 60, 380];
     grid.headers.add(1);
     PdfGridRow header = grid.headers[0];
-    header.cells[0].value = 'Descrição';
-    header.cells[1].value = 'Quantidade';
-    header.cells[2].value = 'Unidade';
+    header.cells[0].value = 'Quantidade';
+    header.cells[1].value = 'Unidade';
+    header.cells[2].value = 'Descrição';
 
     grid.columns[0].width = columnWidths[0];
+    grid.columns[1].width = columnWidths[1];
+    grid.columns[2].width = columnWidths[2];
 
-    header.style = PdfGridCellStyle();
+    header.style = PdfGridCellStyle(
+      backgroundBrush: PdfBrushes.lightSkyBlue,
+      textBrush: PdfBrushes.black,
+    );
     for (final cartItem in cartData) {
       PdfGridRow row = grid.rows.add();
-      row.cells[0].value = cartItem.productName;
-      row.cells[1].value = cartItem.quantity.toStringAsFixed(2);
-      row.cells[2].value = cartItem.unity;
+      row.cells[0].value = cartItem.quantity.toStringAsFixed(2);
+      row.cells[1].value = cartItem.unity;
+      row.cells[2].value = cartItem.productName;
       // dinamicDistance += 35;
     }
     grid.style = PdfGridStyle(

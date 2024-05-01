@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cotacao_ponto_certo/app/config/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:uuid/uuid.dart';
@@ -78,7 +79,8 @@ class _AddCategoryWidgetState extends State<AddCategoryWidget> {
       EasyLoading.show();
       try {
         final categoryId = Uuid().v4();
-        final upperCaseCategoryName = categoryName.toUpperCase();
+        final upperCaseCategoryName =
+            removeSpecialCharacters(categoryName.toUpperCase());
         await _firestore.collection('categories').doc(categoryId).set({
           'categoryId': categoryId,
           'categoryName': upperCaseCategoryName,

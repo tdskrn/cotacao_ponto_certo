@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cotacao_ponto_certo/app/config/router/app_router.dart';
+import 'package:cotacao_ponto_certo/app/models/providers/searched_provider.dart';
 
 import 'package:cotacao_ponto_certo/app/models/timeStampAdapter.dart';
 import 'package:cotacao_ponto_certo/app/models/providers/cart_provider.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CartProvider()),
+        ChangeNotifierProvider(create: (context) => Search()),
       ],
       child: MaterialApp.router(
         scrollBehavior: MaterialScrollBehavior().copyWith(dragDevices: {

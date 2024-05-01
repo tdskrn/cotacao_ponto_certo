@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cotacao_ponto_certo/app/config/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -59,8 +60,12 @@ class _ListProductWidgetState extends State<ListProductWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 150,
         title: Column(
           children: [
+            SizedBox(
+              height: 30,
+            ),
             Text("Todos os Produtos"),
             TextFormField(
               onFieldSubmitted: (value) {
@@ -221,14 +226,17 @@ class _ListProductWidgetState extends State<ListProductWidget> {
                                                           .doc(productId)
                                                           .update({
                                                         'productName':
-                                                            productName
-                                                                .toUpperCase(),
+                                                            removeSpecialCharacters(
+                                                                productName
+                                                                    .toUpperCase()),
                                                         'productUnity':
-                                                            productUnity
-                                                                .toUpperCase(),
+                                                            removeSpecialCharacters(
+                                                                productUnity
+                                                                    .toUpperCase()),
                                                         'productCategory':
-                                                            productCategory
-                                                                .toUpperCase(),
+                                                            removeSpecialCharacters(
+                                                                productCategory
+                                                                    .toUpperCase()),
                                                         'last_modified':
                                                             DateTime.now(),
                                                       }).whenComplete(() {

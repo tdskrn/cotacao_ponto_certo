@@ -3,7 +3,8 @@ import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/ad
 import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/addProduct/add_product_widget.dart';
 import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/showOrders/show_individual_order_widget.dart';
 import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/showOrders/show_orders_widget.dart';
-import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/show_product_widget.dart';
+import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/showProduct/show_product_widget.dart';
+
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(

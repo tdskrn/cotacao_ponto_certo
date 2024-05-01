@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cotacao_ponto_certo/app/config/utils/utils.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -152,8 +153,10 @@ class _AddProductWidgetState extends State<AddProductWidget> {
       EasyLoading.show(status: 'Aguarde um momento...');
       try {
         final productId = Uuid().v4();
-        final upperProductName = productName.toUpperCase();
-        final upperProductUnity = productUnity.toUpperCase();
+        final upperProductName =
+            removeSpecialCharacters(productName.toUpperCase());
+        final upperProductUnity =
+            removeSpecialCharacters(productUnity.toUpperCase());
 
         await _firestore.collection('products').doc(productId).set({
           'productId': productId,

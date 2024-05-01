@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cotacao_ponto_certo/app/config/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -72,8 +73,9 @@ class ShowCategoryAlertDialog extends StatelessWidget {
                                                   .doc(categoryData.id)
                                                   .update({
                                                 "categoryName":
-                                                    _categoryController.text
-                                                        .toUpperCase(),
+                                                    removeSpecialCharacters(
+                                                        _categoryController.text
+                                                            .toUpperCase()),
                                                 "last_modified": DateTime.now(),
                                               }).whenComplete(() {
                                                 EasyLoading.showSuccess(
