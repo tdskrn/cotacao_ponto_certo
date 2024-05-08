@@ -15,6 +15,7 @@ class CheckoutScreen extends StatefulWidget {
 }
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
+  final controller = TextEditingController();
   Widget _rowHeader(String text, int flex) {
     return Expanded(
       flex: flex,
@@ -39,7 +40,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     final CartProvider _cartProvider = Provider.of<CartProvider>(context);
     final PdfService service = PdfService();
     final InvoiceService _invoiceService = InvoiceService();
-    final controller = TextEditingController();
+
     return AlertDialog(
       content: Container(
         width: double.maxFinite,
