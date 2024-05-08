@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class ProductListWidget extends StatelessWidget {
@@ -7,6 +9,7 @@ class ProductListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ScrollController _scrollController = ScrollController();
     Widget _rowHeader(
       String text,
       int flex,
@@ -29,17 +32,32 @@ class ProductListWidget extends StatelessWidget {
       );
     }
 
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: products.length,
-      itemBuilder: (context, index) {
-        final product = products[index];
-        return Row(children: [
-          _rowHeader(product['quantity'].toString(), 1),
-          _rowHeader(product['unity'], 1),
-          _rowHeader(product['product_name'], 3),
-        ]);
-      },
+    return ScrollConfiguration(
+      behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.touch,
+        PointerDeviceKind.stylus,
+        PointerDeviceKind.unknown,
+      }),
+      child: SizedBox(
+        width: double.maxFinite,
+        height: MediaQuery.of(context).size.height * 0.7,
+        // precisa cobrir a list view se não da problema
+        child: ListView.builder(
+          controller: _scrollController,
+          physics: AlwaysScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: products.length,
+          itemBuilder: (context, index) {
+            final product = products[index];
+            return Row(children: [
+              _rowHeader(product['quantity'].toString(), 1),
+              _rowHeader(product['unity'], 1),
+              _rowHeader(product['product_name'], 3),
+            ]);
+          },
+        ),
+      ),
     );
   }
 }

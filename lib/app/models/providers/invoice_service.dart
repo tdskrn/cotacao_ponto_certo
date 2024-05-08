@@ -5,9 +5,7 @@ import 'package:uuid/uuid.dart';
 class InvoiceService {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  addInvoice(
-    Map<String, dynamic> data,
-  ) async {
+  addInvoice(Map<String, dynamic> data, String? name, String? uid) async {
     List<CartAttributes> cartAttributes = [];
 
     data.forEach((key, value) {
@@ -24,8 +22,19 @@ class InvoiceService {
       });
     });
 
+    if (uid != '') {
+      await firestore.collection('invoices').doc(uid).update({
+        'name': name ?? '',
+        'last_modified': DateTime.now(),
+        'products': cartProducts,
+      });
+      return;
+    }
+
     final invoiceId = Uuid().v4();
+
     await firestore.collection('invoices').doc(invoiceId).set({
+      'name': name ?? '',
       'invoice_id': invoiceId,
       'created_at': DateTime.now(),
       'last_modified': DateTime.now(),

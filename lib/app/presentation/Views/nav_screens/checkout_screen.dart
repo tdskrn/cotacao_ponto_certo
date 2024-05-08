@@ -39,13 +39,31 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     final CartProvider _cartProvider = Provider.of<CartProvider>(context);
     final PdfService service = PdfService();
     final InvoiceService _invoiceService = InvoiceService();
+    final controller = TextEditingController();
     return AlertDialog(
       content: Container(
         width: double.maxFinite,
-        height: 300,
+        height: MediaQuery.of(context).size.height * 0.7,
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Text("Insira um nome para o seu pedido"),
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Insira um nome';
+                  }
+                  return null;
+                },
+                controller: controller,
+                decoration: InputDecoration(
+                  labelText: 'Insira um nome',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
               Row(
                 children: [
                   _rowHeader("QTD", 1),
@@ -60,10 +78,31 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       ),
       actions: [
         ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('Retornar')),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text('Retornar'),
+        ),
+        ElevatedButton(
+          onPressed: () async {
+            try {
+              EasyLoading.show(status: "Salvando o pedido");
+              await _invoiceService
+                  .addInvoice(_cartProvider.cartItems, controller.text,
+                      _cartProvider.uid)
+                  .whenComplete(() {
+                EasyLoading.showSuccess("Pedido salvo com sucesso");
+                EasyLoading.dismiss();
+                _cartProvider.deleteAllCart();
+                _cartProvider.setUid('');
+              });
+            } catch (e) {
+              EasyLoading.showError(e.toString());
+            }
+            Navigator.of(context).pop();
+          },
+          child: Text('Salvar'),
+        ),
         ElevatedButton(
             onPressed: () async {
               if (kIsWeb) {
@@ -75,18 +114,20 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               try {
                 EasyLoading.show(status: "Salvando o pedido");
                 await _invoiceService
-                    .addInvoice(_cartProvider.cartItems)
+                    .addInvoice(_cartProvider.cartItems, controller.text,
+                        _cartProvider.uid)
                     .whenComplete(() {
                   EasyLoading.showSuccess("Pedido salvo com sucesso");
                   EasyLoading.dismiss();
                   _cartProvider.deleteAllCart();
+                  _cartProvider.setUid('');
                 });
               } catch (e) {
                 EasyLoading.showError(e.toString());
               }
               Navigator.of(context).pop();
             },
-            child: Text('Salvar')),
+            child: Text('Salvar e Enviar')),
       ],
     );
   }

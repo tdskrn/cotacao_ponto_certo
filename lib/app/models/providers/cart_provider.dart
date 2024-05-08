@@ -8,6 +8,14 @@ class CartProvider with ChangeNotifier {
 
   int get totalItems => _cartItems.entries.length;
 
+  String _uid = '';
+
+  String get uid => _uid;
+
+  void setUid(String uid) {
+    _uid = uid;
+  }
+
   void deleteAllCart() {
     _cartItems.clear();
     notifyListeners();

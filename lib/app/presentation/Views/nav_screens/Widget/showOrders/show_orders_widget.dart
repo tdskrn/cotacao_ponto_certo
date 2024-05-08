@@ -44,6 +44,11 @@ class _ShowOrdersWidgetState extends State<ShowOrdersWidget> {
                 },
                 child: Card(
                   child: ListTile(
+                    trailing: Text(
+                      invoiceData['name'] ?? '',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
                     title: Text(DateFormat.MMMEd()
                             .format(invoiceData['created_at'].toDate()) +
                         ' --' +
