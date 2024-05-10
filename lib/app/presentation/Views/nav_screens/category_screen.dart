@@ -25,7 +25,7 @@ class CategoryScreen extends StatelessWidget {
         }
 
         return Container(
-          height: MediaQuery.of(context).size.width - 50,
+          height: MediaQuery.of(context).size.height - 50,
           child: ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
@@ -41,7 +41,24 @@ class CategoryScreen extends StatelessWidget {
                     },
                   );
                 },
-                title: Text(categoryData['categoryName']),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      height: 30,
+                      child: Text(
+                        categoryData['categoryName'],
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 25,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               );
             },
           ),

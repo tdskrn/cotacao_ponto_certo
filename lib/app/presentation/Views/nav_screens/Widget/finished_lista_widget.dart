@@ -28,23 +28,28 @@ class _ProductWidgetCartState extends State<ProductWidgetCart> {
     widget.data.forEach((key, value) {
       cartData.add(value);
     });
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: cartData.length,
-      itemBuilder: (context, index) {
-        final cartProductData = cartData[index];
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: MediaQuery.of(context).size.height * 0.7,
+      child: ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: cartData.length,
+        itemBuilder: (context, index) {
+          final cartProductData = cartData[index];
 
-        return Container(
-          child: Row(
-            children: [
-              productWidgetCartRow(
-                  1, Text(cartProductData.quantity.toString())),
-              productWidgetCartRow(1, Text(cartProductData.unity)),
-              productWidgetCartRow(3, Text(cartProductData.productName)),
-            ],
-          ),
-        );
-      },
+          return Container(
+            child: Row(
+              children: [
+                productWidgetCartRow(
+                    1, Text(cartProductData.quantity.toString())),
+                productWidgetCartRow(1, Text(cartProductData.unity)),
+                productWidgetCartRow(3, Text(cartProductData.productName)),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

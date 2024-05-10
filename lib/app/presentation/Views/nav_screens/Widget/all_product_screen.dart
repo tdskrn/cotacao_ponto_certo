@@ -105,7 +105,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
       title: Text(widget.categoryData['categoryName']),
       content: Container(
         width: double.maxFinite,
-        height: 300,
+        height: MediaQuery.sizeOf(context).height * 0.9,
         child: StreamBuilder(
             stream: _productsForCategory,
             builder: (context, snapshot) {
@@ -151,9 +151,19 @@ class _AllProductScreenState extends State<AllProductScreen> {
                       child: Card(
                         child: Row(
                           children: [
-                            Padding(
-                                padding: EdgeInsets.all(10),
-                                child: Text(productData['productName'])),
+                            // essa ordem aqui resolve o overflow
+                            Expanded(
+                              child: Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(
+                                    productData['productName'],
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  )),
+                            ),
                             Padding(
                                 padding: EdgeInsets.all(10),
                                 child: Text(productData['productUnity'])),
