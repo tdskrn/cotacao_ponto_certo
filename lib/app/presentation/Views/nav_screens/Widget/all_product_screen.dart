@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cotacao_ponto_certo/app/models/providers/cart_provider.dart';
 import 'package:cotacao_ponto_certo/app/presentation/Views/nav_screens/Widget/productDetailScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AllProductScreen extends StatefulWidget {
   const AllProductScreen({super.key, this.categoryData});
@@ -94,6 +96,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final CartProvider _cartProvider = Provider.of<CartProvider>(context);
     final Stream<QuerySnapshot> _productsForCategory = FirebaseFirestore
         .instance
         .collection('products')
@@ -149,6 +152,10 @@ class _AllProductScreenState extends State<AllProductScreen> {
                         );
                       },
                       child: Card(
+                        color: _cartProvider.cartItems.keys
+                                .contains(productData['productId'])
+                            ? Colors.blue
+                            : Colors.white,
                         child: Row(
                           children: [
                             // essa ordem aqui resolve o overflow
